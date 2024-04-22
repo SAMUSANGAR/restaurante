@@ -1,5 +1,10 @@
-import 'package:restaurante/restaurante.dart' as restaurante;
+import 'App.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${restaurante.calculate()}!');
+
+main(){
+
+  App.pedirOpcion();
+
+
 }
+
