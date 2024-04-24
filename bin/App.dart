@@ -1,73 +1,165 @@
-import 'claseRestaurante.dart';
 import "dart:io";
-
+import 'Usuario.dart';
 class App {
   static inicioApp() async {
-    int? seleccion = pedirOpcion();
-    switch (seleccion) {
+    int? opcion;
+    do{
+      stdout.writeln('''Elige una opción
+      1 - Registrarte
+      2 - Iniciar sesion
+      3 - Restaurante''');
+      String respuesta = stdin.readLineSync() ?? 'e';
+      opcion = int.tryParse(respuesta);
+    } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3);
+    switch(opcion){
       case 1:
-        Menu();
+        crearUsuario();
         break;
       case 2:
-        Reservas();
+        login();
         break;
-       case 3:
-        Pedido();
-        break;
-         case 4:
-        infoRestaurante();
+      case 3:
+        menuRestaurante();
         break;
       default:
-        inicioApp();
+        print('Opción no válida');
     }
   }
-
-  static String _pedirNombre() {
-    stdout.writeln("Escribe el nombre del pokémon a consultar");
-    return stdin.readLineSync() ?? "error";
-  }
-
-  static int? pedirOpcion() {
+  static menuRestaurante()async {
     int? opcion;
-    do {
-      stdout.writeln('''Selecciona una de las siguientes opciones:
+    
+    do{
+      stdout.writeln('''Hola, elige una opción:
         1 - Menu
         2 - Reserva
         3 - Pedido
-        4 - Info Restaurante''');
-      opcion = int.tryParse(stdin.readLineSync() ?? 'e');
-    } while (opcion == null);
-    return opcion;
+        4 - Info Restaurante
+        5 - Salir''');
+      String respuesta = stdin.readLineSync() ?? 'e';
+      opcion = int.tryParse(respuesta);
+    } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3  && opcion !=4 && opcion !=5);
+      
+    switch(opcion){
+      case 1:
+        await Menu();
+        break;
+      case 2:
+        await Reservas();
+        break;
+      case 3:
+        await Pedido();
+        break;
+        case 4:
+        await infoRestaurante();
+        break;
+      case 5:
+        print("Adios");
+        break;
+      default:
+        print('Opción no válida');
+    }
+  }
+
+  static menuLogueado(Usuario usuario) async {
+    int? opcion;
+    String? nombre = usuario.nombre;
+    do{
+      stdout.writeln('''Hola, $nombre, elige una opción:
+        1 - Menu
+        2 - Reserva
+        3 - Pedido
+        4 - Info Restaurante
+        5 - Salir''');
+      String respuesta = stdin.readLineSync() ?? 'e';
+      opcion = int.tryParse(respuesta);
+    } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3  && opcion !=4 && opcion !=5);
+    switch(opcion){
+      case 1:
+        await Menu();
+        break;
+      case 2:
+        await Reservas();
+        break;
+      case 3:
+        await Pedido();
+        break;
+        case 4:
+        await infoRestaurante();
+        break;
+      case 5:
+        print("Adios");
+        break;
+      default:
+        print('Opción no válida');
+    }
+  }
+
+  static login() async {
+    Usuario usuario = new Usuario();
+    stdout.writeln('Introduce tu nombre de usuario');
+    usuario.nombre = stdin.readLineSync();
+    stdout.writeln('Introduce tu constraseña');
+    usuario.password = stdin.readLineSync();
+    var resultado = await usuario.loginUsuario();
+    if(resultado == false){
+      stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');
+   ();
+    } else {
+       menuLogueado(usuario);
+    }
+  }
+
+ static crearUsuario() async {
+    Usuario usuario = new Usuario();
+    stdout.writeln('Introduce un nombre de usuario');
+    usuario.nombre = stdin.readLineSync();
+    stdout.writeln('Introduce una constraseña');
+    usuario.password = stdin.readLineSync();
+    usuario.password = usuario.password;
+    await usuario.insertarUsuario();
+ ();
+ menuLogueado(usuario);
+  }
+    
   }
 
 
-static Menu() async {
+
+ Menu() async {
     
    stdout.writeln ('''Entradas:
-Ensalada verde - 5
-Caldo de pollo - 4
+Antipasto Italiano - Selección de embutidos, quesos y aceitunas - 5
+Queso Fundido - Queso derretido con chorizo o champiñones, servido con tortillas - 6,50
+
 
 Platos Principales:
-Sandwich de jamón y queso con papas fritas - 8
-Tacos de frijoles con salsa y queso - 7
-Arroz con pollo - 10
+Italianos:
+Lasaña de Carne - 6
+Risotto de Champiñones y Trufa - 8
+Pollo Marsala - 7
+
+Mexicanos:
+Tacos de Camarón - 9
+Mole Poblano con Pollo - 10
+Tostadas de Tinga de Pollo - 5
 
 Postres:
-Gelatina de frutas - 3
-Flan de cajeta - 4
+Panna Cotta de Vainilla - 7
+Tarta de queso - 6
 
 Bebidas:
-Agua de jamaica - 2
-Refresco de cola - 2.5
-Cerveza nacional en lata - 3''');
+Vino Chianti (Italiano) - 9 (copa)
+Margarita de Mango - 8
+Agua mineral - 2
+Refrescos - 2,50''');
  }
 
 
-  static Reservas() async {
+ Reservas() async {
    
   }
 
-static  Pedido() {
+  Pedido() {
     int? opcion;
     do {
       stdout.writeln('''Como quiere el pedido }:
@@ -80,25 +172,15 @@ static  Pedido() {
 
 
 
-static infoRestaurante() {
- var miRestaurante = Restaurante(
-    nombre: 'Mi Restaurante',
-    ubicacion: 'Calle Principal 123',
-    tiposDeCocina: ['Mexicana', 'Italiana'],
-    horario: ['Lunes a Viernes 12:00 - 22:00', 'Sábado y Domingo 13:00 - 23:00'],
-    menu: ['Tacos', 'Pizza', 'Ensaladas'],
-    capacidadMaxima: 50,
-    aceptaReservas: true,
-  );
+ infoRestaurante() {
+ 
+   stdout.writeln('''
+        NOMBRE: Mi Restaurante
+        UBICACION: Calle Principal 123
+        TIPOS DE COCINA: Mexicana o Italiana
+        HORARIO: Lunes a Viernes 12:00 - 24:00, Sábado y Domingo 13:00 - 2:00
+        CAPACIDAD MAXIMA : 70
+        ACEPTA RESERVAS: si
+        ''');
 
-  print('Nombre del restaurante: ${miRestaurante.nombre}');
-  print('Ubicación: ${miRestaurante.ubicacion}');
-  print('Tipos de cocina: ${miRestaurante.tiposDeCocina}');
-  print('Horario: ${miRestaurante.horario}');
-  print('Menú: ${miRestaurante.menu}');
-  print('Capacidad máxima: ${miRestaurante.capacidadMaxima}');
-  print('Acepta reservas: ${miRestaurante.aceptaReservas ? 'Sí' : 'No'}');
-
-
-}
 }
