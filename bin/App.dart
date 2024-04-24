@@ -1,7 +1,8 @@
 import "dart:io";
 import 'Usuario.dart';
+import 'pruebas.dart';
 class App {
-  static inicioApp() async {
+   inicioApp() async {
     int? opcion;
     do{
       stdout.writeln('''Elige una opción
@@ -25,7 +26,7 @@ class App {
         print('Opción no válida');
     }
   }
-  static menuRestaurante()async {
+   menuRestaurante()async {
     int? opcion;
     
     do{
@@ -60,7 +61,7 @@ class App {
     }
   }
 
-  static menuLogueado(Usuario usuario) async {
+   menuLogueado(Usuario usuario) async {
     int? opcion;
     String? nombre = usuario.nombre;
     do{
@@ -94,7 +95,7 @@ class App {
     }
   }
 
-  static login() async {
+   login() async {
     Usuario usuario = new Usuario();
     stdout.writeln('Introduce tu nombre de usuario');
     usuario.nombre = stdin.readLineSync();
@@ -109,7 +110,7 @@ class App {
     }
   }
 
- static crearUsuario() async {
+  crearUsuario() async {
     Usuario usuario = new Usuario();
     stdout.writeln('Introduce un nombre de usuario');
     usuario.nombre = stdin.readLineSync();
@@ -123,39 +124,12 @@ class App {
     
   }
 
-
-
- Menu() async {
-    
-   stdout.writeln ('''Entradas:
-Antipasto Italiano - Selección de embutidos, quesos y aceitunas - 5
-Queso Fundido - Queso derretido con chorizo o champiñones, servido con tortillas - 6,50
-
-
-Platos Principales:
-Italianos:
-Lasaña de Carne - 6
-Risotto de Champiñones y Trufa - 8
-Pollo Marsala - 7
-
-Mexicanos:
-Tacos de Camarón - 9
-Mole Poblano con Pollo - 10
-Tostadas de Tinga de Pollo - 5
-
-Postres:
-Panna Cotta de Vainilla - 7
-Tarta de queso - 6
-
-Bebidas:
-Vino Chianti (Italiano) - 9 (copa)
-Margarita de Mango - 8
-Agua mineral - 2
-Refrescos - 2,50''');
+ Menu() {
+    listarMenu();
  }
 
 
- Reservas() async {
+ Reservas() {
    
   }
 
@@ -170,17 +144,6 @@ Refrescos - 2,50''');
     return opcion;
   }
 
-
-
  infoRestaurante() {
- 
-   stdout.writeln('''
-        NOMBRE: Mi Restaurante
-        UBICACION: Calle Principal 123
-        TIPOS DE COCINA: Mexicana o Italiana
-        HORARIO: Lunes a Viernes 12:00 - 24:00, Sábado y Domingo 13:00 - 2:00
-        CAPACIDAD MAXIMA : 70
-        ACEPTA RESERVAS: si
-        ''');
-
+ listarInfo();
 }
