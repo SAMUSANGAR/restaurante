@@ -2,8 +2,8 @@ import 'App.dart';
 
 
 main(){
-
-  App.pedirOpcion();
+  print('Bienvenido a mi restaurante');
+  App.inicioApp();
 
 
 }

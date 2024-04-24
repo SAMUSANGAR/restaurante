@@ -1,7 +1,6 @@
 import 'claseRestaurante.dart';
 import "dart:io";
 
-
 class App {
   static inicioApp() async {
     int? seleccion = pedirOpcion();
@@ -42,8 +41,25 @@ class App {
   }
 
 
-static Menu(miRestaurante) async {
+static Menu() async {
     
+   stdout.writeln ('''Entradas:
+Ensalada verde - 5
+Caldo de pollo - 4
+
+Platos Principales:
+Sandwich de jamón y queso con papas fritas - 8
+Tacos de frijoles con salsa y queso - 7
+Arroz con pollo - 10
+
+Postres:
+Gelatina de frutas - 3
+Flan de cajeta - 4
+
+Bebidas:
+Agua de jamaica - 2
+Refresco de cola - 2.5
+Cerveza nacional en lata - 3''');
  }
 
 
@@ -51,7 +67,7 @@ static Menu(miRestaurante) async {
    
   }
 
-static  Pedido(Restaurante restaurante) {
+static  Pedido() {
     int? opcion;
     do {
       stdout.writeln('''Como quiere el pedido }:
@@ -64,7 +80,7 @@ static  Pedido(Restaurante restaurante) {
 
 
 
-infoRestaurante(miRestaurante) {
+static infoRestaurante() {
  var miRestaurante = Restaurante(
     nombre: 'Mi Restaurante',
     ubicacion: 'Calle Principal 123',
