@@ -1,6 +1,6 @@
 import "dart:io";
 import 'Usuario.dart';
-import 'pruebas.dart';
+import 'Listas.dart';
 class App {
    inicioApp() async {
     int? opcion;
@@ -42,16 +42,16 @@ class App {
       
     switch(opcion){
       case 1:
-        await Menu();
+        await Menu(menuRestaurante);
         break;
       case 2:
-        await Reservas();
+        await Reservas(menuRestaurante);
         break;
       case 3:
-        await Pedido();
+        await Pedido(menuRestaurante);
         break;
         case 4:
-        await infoRestaurante();
+        await infoRestaurante(menuRestaurante);
         break;
       case 5:
         print("Adios");
@@ -76,16 +76,16 @@ class App {
     } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3  && opcion !=4 && opcion !=5);
     switch(opcion){
       case 1:
-        await Menu();
+        await Menu(menuRestaurante);
         break;
       case 2:
-        await Reservas();
+        await Reservas(menuRestaurante);
         break;
       case 3:
-        await Pedido();
+        await Pedido(menuRestaurante);
         break;
         case 4:
-        await infoRestaurante();
+        await infoRestaurante(menuRestaurante);
         break;
       case 5:
         print("Adios");
@@ -122,18 +122,17 @@ class App {
  menuLogueado(usuario);
   }
     
-  }
-
- Menu() {
+}
+ Menu(menuRestaurante) {
     listarMenu();
+      volverMenu(menuRestaurante);
  }
 
-
- Reservas() {
-   
+ Reservas(menuRestaurante) {
+   volverMenu(menuRestaurante);
   }
 
-  Pedido() {
+  Pedido(menuRestaurante) {
     int? opcion;
     do {
       stdout.writeln('''Como quiere el pedido }:
@@ -141,9 +140,41 @@ class App {
         2 - Para recoger''');
       opcion = int.tryParse(stdin.readLineSync() ?? 'e');
     } while (opcion == null);
-    return opcion;
+     switch(opcion){
+      case 1:
+        ();
+        break;
+      case 2:
+      pedidoArecoger();
+        print('Tu pedido estara listo en 30 minutos');
+        break;
+      default:
+        print('Opción no válida');
+    }
+    volverMenu(menuRestaurante);
   }
 
- infoRestaurante() {
+ infoRestaurante(menuRestaurante) {
  listarInfo();
+ volverMenu(menuRestaurante);
+}
+volverMenu(menuRestaurante){
+  int? opcion;
+    do {
+      stdout.writeln('''
+        1 - Volver al menu
+        2 - Salir del Menu''');
+      opcion = int.tryParse(stdin.readLineSync() ?? 'e');
+    } while (opcion == null);
+     switch(opcion){
+      case 1:
+        menuRestaurante();
+        break;
+        case 2:
+        print('Adios');
+        break;
+      default:
+        print('Opción no válida');
+    }
+
 }

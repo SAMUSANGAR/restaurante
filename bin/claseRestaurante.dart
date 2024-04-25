@@ -8,7 +8,11 @@ class Restaurante {
   int? capacidadMaxima;
   bool? aceptaReservas;
 
-  var restaurante;
+  set telefono(String telefono) {}
+
+  set Nombre(String Nombre) {}
+
+ 
 
  
 }
