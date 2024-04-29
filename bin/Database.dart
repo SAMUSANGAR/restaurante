@@ -49,6 +49,5 @@ class Database {
         nombre VARCHAR(50) NOT NULL UNIQUE,
         password VARCHAR(10) NOT NULL
     )''');
-    print('Tabla usuarios creada');
   }
 }

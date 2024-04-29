@@ -12,7 +12,7 @@ class Restaurante {
 
   set Nombre(String Nombre) {}
 
- 
+  set direccion(String direccion) {}
 
  
 }

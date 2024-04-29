@@ -142,11 +142,10 @@ class App {
     } while (opcion == null);
      switch(opcion){
       case 1:
-        ();
+        pedidoAdomicilio();
         break;
       case 2:
       pedidoArecoger();
-        print('Tu pedido estara listo en 30 minutos');
         break;
       default:
         print('Opción no válida');
