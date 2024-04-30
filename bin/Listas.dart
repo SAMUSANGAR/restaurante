@@ -65,7 +65,7 @@ pedidoArecoger(){
      stdout.writeln('Intoduce un numero que quieres del menu');
      String Nombre = stdin.readLineSync() ?? "error";
      nombre.Nombre = Nombre;
-    return pedido();
+    return pedidoR();
   }
   datosArecoger(){
     print("Intoduce tu nombre y numero de telefono para realizar su pedido");
@@ -82,7 +82,7 @@ pedidoArecoger(){
       print('Su pedido estara listo a recoger en nuestro local  en 30 minutos');
   }
      
-  pedido(){
+  pedidoR(){
    int? opcion;
     do {
       stdout.writeln('''}:
@@ -94,17 +94,13 @@ pedidoArecoger(){
       case 1:
          Restaurante nombre = new Restaurante();
      //Nombre
-     stdout.writeln('Introduce el numero que quieres del menu');
+     stdout.writeln('Introduce otro numero que quieres del menu');
      String Nombre = stdin.readLineSync() ?? "error";
      nombre.Nombre = Nombre;
-     pedido();
+     pedidoR();
         break;
       case 2:
-      if(datosArecoger()== true){
-        datosArecoger();
-      }else{
-        datosAdomicilio();
-      }
+      datosArecoger();
         break;
       default:
         print('Opción no válida');
@@ -118,10 +114,10 @@ pedidoArecoger(){
      stdout.writeln('Intoduce un numero que quieres del menu');
      String Nombre = stdin.readLineSync() ?? "error";
      nombre.Nombre = Nombre;
-    return pedido();
+    return pedidoD();
   }
   datosAdomicilio(){
-    print("Intoduce tu nombre y numero de telefono para realizar su pedido");
+    print("Intoduce tu nombre, numero de telefono y tu direccion para realizar su pedido");
       Restaurante nombre = new Restaurante();
      //Nombre
      stdout.writeln('Introduce tu nombre');
@@ -140,4 +136,27 @@ pedidoArecoger(){
      print('Su pedido estara listo en su domicilio en 40 minutos');
 
   }
-  
+  pedidoD(){
+   int? opcion;
+    do {
+      stdout.writeln('''}:
+        1 - ¿Algo mas?
+        2 - Nada mas ''');
+      opcion = int.tryParse(stdin.readLineSync() ?? 'e');
+    } while (opcion == null);
+     switch(opcion){
+      case 1:
+         Restaurante nombre = new Restaurante();
+     //Nombre
+     stdout.writeln('Introduce otro numero que quieres del menu');
+     String Nombre = stdin.readLineSync() ?? "error";
+     nombre.Nombre = Nombre;
+     pedidoD();
+        break;
+      case 2:
+      datosAdomicilio();
+        break;
+      default:
+        print('Opción no válida');
+    }
+  }

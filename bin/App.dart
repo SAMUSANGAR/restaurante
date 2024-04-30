@@ -31,7 +31,7 @@ class App {
     
     do{
       stdout.writeln('''Hola, elige una opción:
-        1 - Menu
+        1 - Carta
         2 - Reserva
         3 - Pedido
         4 - Info Restaurante
@@ -66,7 +66,7 @@ class App {
     String? nombre = usuario.nombre;
     do{
       stdout.writeln('''Hola, $nombre, elige una opción:
-        1 - Menu
+        1 - Carta
         2 - Reserva
         3 - Pedido
         4 - Info Restaurante
