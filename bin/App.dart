@@ -1,6 +1,8 @@
 import "dart:io";
 import 'Usuario.dart';
 import 'Listas.dart';
+import 'reservas.dart';
+import 'pedido.dart';
 class App {
    inicioApp() async {
     int? opcion;
@@ -129,8 +131,10 @@ class App {
  }
 
  Reservas(menuRestaurante) {
+   hacerReserva(hacerReservas(verReservas, hacerReserva, cancelarReserva,menuRestaurante));
    volverMenu(menuRestaurante);
   }
+  
 
   Pedido(menuRestaurante) {
     int? opcion;
